@@ -8,21 +8,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppAbout.Service;
 
 namespace WebAppAbout
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Configuration.Bind("Project", new Config());
             services.AddControllersWithViews();
         }
 
